@@ -115,29 +115,16 @@ def quote():
     """Get stock quote."""
     return apology("TODO")
 
-# REGISTER REGISTER REGISTER
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
-    if request.method == "POST":
-        if not request.form.get("username"):
-            return apology("must provide username", 403)
-        elif not request.form.get("password"):
-            return apology("must provide password", 403)
-        elif not request.form.get("confirmation"):
-            return apology("passwords do not match", 403)
-        else:
-            try:
-                primary_key = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",
-                        username=request.form.get("username"),
-                        hash=generate_password_hash(request.form.get("password")))
-            except:
-                return apology("user already exists", 403)
-
-            session["user_id"] = primary_key
-            redirect("/login")
-    else:
+    if request.method == "GET":
         return render_template("register.html")
+    else:
+        pass
+
+
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
