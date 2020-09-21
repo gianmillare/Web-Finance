@@ -113,7 +113,17 @@ def logout():
 @login_required
 def quote():
     """Get stock quote."""
-    return apology("TODO")
+    if request.method == "GET":
+        return render_template("quote.html")
+    else:
+        if request.form.get("stock") == "":
+            return apology("you must enter a valid stock symbol.", 403)
+        else:
+            stock_symbol = request.form.get("stock").upper()
+            stock_search = lookup(stock_symbol)
+            if stock_search is None:
+                return apology("you must enter a valid stock symbol.", 403)
+            return render_template("quoted.html", stock_info={"name": stock_search['name'], "symbol": stock_search['symbol'], "price": usd(stock_search['price'])})
 
 
 @app.route("/register", methods=["GET", "POST"])
