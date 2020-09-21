@@ -122,7 +122,11 @@ def register():
     if request.method == "GET":
         return render_template("register.html")
     else:
-        if request.form.get("username") != None and request.form.get("password") != None and request.form.get("password") == request.form.get("confirmation"):
+        if request.form.get("username") == "" or request.form.get("password") == "":
+            return apology("registration error. please enter a username and a password.", 403)
+        elif request.form.get("password") != request.form.get("confirmation"):
+            return apology("registration error. ensure both passwords match.", 403)
+        else:
             username = request.form.get("username")
             hashing = generate_password_hash(request.form.get("password"))
             try:
