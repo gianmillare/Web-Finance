@@ -122,7 +122,16 @@ def register():
     if request.method == "GET":
         return render_template("register.html")
     else:
-        pass
+        if request.form.get("username") != None and request.form.get("password") != None and request.form.get("password") == request.form.get("confirmation"):
+            username = request.form.get("username")
+            hashing = generate_password_hash(request.form.get("password"))
+            try:
+                p_key = db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", (username, hashing))
+            except:
+                return apology("username already exists. please try again.", 403)
+            session["user_id"] = p_key
+            return redirect("/")
+
 
 
 
