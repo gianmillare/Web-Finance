@@ -51,7 +51,28 @@ def index():
 @login_required
 def buy():
     """Buy shares of stock"""
-    return apology("TODO")
+    if request.method == "GET":
+        return render_template("buy.html")
+    else:
+        if request.form.get("stock") == "":
+            return apology("invalid symbol. please try again.", 403)
+        elif not request.form.get("shares").isdigit():
+            return apology("invalid number of shares. please try again.", 403)
+        else:
+            number_of_shares = request.form.get("shares")
+            stock_symbol = request.form.get("stock").upper()
+            stock_search = lookup(stock_symbol)
+            if stock_search is None:
+                return apology("invalid symbol. please try again.", 403)
+            rows = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+            cash = rows[0]["cash"]
+            purchase_price = stock_search['price'] * int(number_of_shares)
+            updated_cash = cash - purchase_price
+            if updated_cash < 0:
+                return apology("you cannot afford this purchase. please try again.", 403)
+            db.execute("UPDATE users SET cash=? WHERE id=?", (updated_cash, session["user_id"]))
+            return redirect("/")
+
 
 
 @app.route("/history")
