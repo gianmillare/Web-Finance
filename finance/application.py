@@ -71,6 +71,11 @@ def buy():
             if updated_cash < 0:
                 return apology("you cannot afford this purchase. please try again.", 403)
             db.execute("UPDATE users SET cash=? WHERE id=?", (updated_cash, session["user_id"]))
+            db.execute("""
+                INSERT INTO history (user_id, symbol, shares, price)
+                VALUES (?, ?, ?, ?)
+            """, (session["user_id"], stock_search['symbol'], int(number_of_shares), stock_search['price']))
+            flash("Purchase Successful!")
             return redirect("/")
 
 
