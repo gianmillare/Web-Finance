@@ -44,7 +44,32 @@ if not os.environ.get("API_KEY"):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    return apology("TODO")
+    rows = db.execute("""
+        SELECT symbol, SUM(shares) as TotalShares
+        FROM history
+        WHERE user_id=?
+        GROUP BY symbol
+        Having TotalShares > 0;
+    """, session["user_id"])
+
+    portfolio = []
+    net_total = 0
+    for row in rows:
+        stock_search = lookup(row["symbol"])
+        portfolio.append({
+            "name": stock_search["name"],
+            "symbol": stock_search["symbol"],
+            "shares": row["TotalShares"],
+            "price": stock_search["price"],
+            "total": usd(stock_search['price'] * row["TotalShares"])
+        })
+        net_total += stock_search['price'] * row["TotalShares"]
+
+    rows = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+    current_cash = rows[0]["cash"]
+    net_total += current_cash
+
+    return render_template("index.html", portfolio=portfolio, current_cash=usd(current_cash), net_total=usd(net_total))
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -73,7 +98,7 @@ def buy():
             db.execute("UPDATE users SET cash=? WHERE id=?", (updated_cash, session["user_id"]))
             db.execute("""
                 INSERT INTO history (user_id, symbol, shares, price)
-                VALUES (?, ?, ?, ?)
+                VALUES (?, ?, ?, ?);
             """, (session["user_id"], stock_search['symbol'], int(number_of_shares), stock_search['price']))
             flash("Purchase Successful!")
             return redirect("/")
