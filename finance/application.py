@@ -262,6 +262,17 @@ def sell():
         flash("Stocks Successfully Sold!")
         return redirect("/")
 
+@app.route("/add_cash", methods=["GET", "POST"])
+@login_required
+def add_cash():
+    if request.method == "GET":
+        return render_template("add_cash.html")
+    else:
+        cash_to_add = request.form.get("add_cash")
+        db.execute("UPDATE users SET cash = cash + ? WHERE id=?", (cash_to_add, session["user_id"]))
+        flash("Cash Successfully Added!")
+        return redirect("/")
+
 def errorhandler(e):
     """Handle error"""
     if not isinstance(e, HTTPException):
