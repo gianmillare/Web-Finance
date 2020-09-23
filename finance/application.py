@@ -204,7 +204,16 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-    return apology("TODO")
+    if request.method == "GET":
+        rows = db.execute("""
+            SELECT symbol FROM history
+            WHERE user_id=?
+            GROUP BY symbol
+            HAVING SUM(shares) > 0;
+        """, session["user_id"])
+        return render_template("sell.html", symbols=[ row["symbol"] for row in rows ])
+    else:
+        pass
 
 
 def errorhandler(e):

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="POST">
+
+        <!--Create a dropdown menu of available Stocks that you can sell-->
+        <div class="form-group">
+            <select class="form-control" name="symbol">
+                <option disabled selected value="">Symbol</option>
+                {% for symbol in symbols %}
+                    <option value="{{ symbol }}">{{ symbol }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!--Create a text field for user to input number of shares they would like to sell-->
+        <div class="form-group">
+            <input placeholder="Number of Shares" min=1 class="form-control" type="number" name="shares">
+        </div>
+
+        <!--Button to confirm the sell-->
+        <button class="btn btn-primary">Sell</button>
+
+    </form>
+{% endblock %}
+
