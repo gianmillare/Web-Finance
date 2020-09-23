@@ -213,8 +213,45 @@ def sell():
         """, session["user_id"])
         return render_template("sell.html", symbols=[ row["symbol"] for row in rows ])
     else:
-        pass
+        symbol = request.form.get("symbol").upper()
+        number_of_shares = request.form.get("shares")
+        if number_of_shares == "" or number_of_shares == 0:
+            return apology("you must enter a valid share amount. please try again.", 403)
+        number_of_shares = int(number_of_shares)
+        stock_search = lookup(symbol)
 
+        if stock_search is None:
+            return apology("invalid symbol. please try again", 403)
+
+        rows = db.execute("""
+            SELECT symbol, SUM(shares) as TotalShares FROM history
+            WHERE user_id=?
+            GROUP BY symbol
+            HAVING TotalShares > 0;
+        """, session["user_id"])
+
+        for row in rows:
+            if row["symbol"] == symbol:
+                if number_of_shares > row['TotalShares']:
+                    return apology("too many shares selected. please try again", 403)
+
+        # Create a variables needed like current cash, selling price, and updated cash
+        rows = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+        cash = rows[0]["cash"]
+        sell_price = number_of_shares * stock_search["price"]
+        updated_cash = cash + sell_price
+
+        # update the database with the new cash amount after the sale
+        db.execute("UPDATE users SET cash=? WHERE id=?", (updated_cash, session["user_id"]))
+
+        # update the database with the selling of the shares
+        db.execute("""
+            INSERT INTO history (user_id, symbol, shares, price)
+            VALUES (?, ?, ?, ?);
+        """, (session["user_id"], stock_search["symbol"], number_of_shares * -1, stock_search["price"]) )
+
+        flash("Stocks Successfully Sold!")
+        return redirect("/")
 
 def errorhandler(e):
     """Handle error"""
