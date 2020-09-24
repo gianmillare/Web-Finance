@@ -46,7 +46,7 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 <br>
 
 <h2 align="center">Preview 4: Quote</h2>
-<p>To view the current price of a stock, users can use the "Quote" feature on the top left of the homepage. Users will perform purchases by clicking on the "Purchase" button after typing a valid stock symbol and selecting the amount of shares. The stock and the number of shares will be added to the portfolio.</p>
+<p>To view the current price of a stock, users can use the "Quote" feature on the top left of the homepage. This researching feature is done by typing a valid stock symbol in the search bar and clicking "Quote".</p>
 
 <div align="center">
 <img src="images/quote1.png">
@@ -54,4 +54,15 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 
 <div align="center">
 <img src="images/quote2.png">
+</div>
+
+<br>
+<br>
+<br>
+
+<h2 align="center">Preview 5: Buy</h2>
+<p>Users will perform purchases by clicking on the "Purchase" button after typing a valid stock symbol and selecting the amount of shares. The stock and the number of shares will be added to the portfolio</p>
+
+<div align="center">
+<img src="images/buy.png">
 </div>
