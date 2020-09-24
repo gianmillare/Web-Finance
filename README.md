@@ -61,8 +61,19 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 <br>
 
 <h2 align="center">Preview 5: Buy</h2>
-<p>Users will perform purchases by clicking on the "Purchase" button after typing a valid stock symbol and selecting the amount of shares. The stock and the number of shares will be added to the portfolio</p>
+<p>By selecting the "Buy" option, users will perform purchases by clicking on the "Purchase" button after typing a valid stock symbol and selecting the amount of shares. The stock and the number of shares will be added to the portfolio.</p>
 
 <div align="center">
 <img src="images/buy.png">
+</div>
+
+<br>
+<br>
+<br>
+
+<h2 align="center">Preview 6: Sell</h2>
+<p>Users can sell stocks by selecting the "Sell" feature in the Navbar. A stock and the number of shares available in the user's portfolio is needed to perform a successful sell.</p>
+
+<div align="center">
+<img src="images/sell.png">
 </div>
