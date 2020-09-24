@@ -19,6 +19,10 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 <img src="images/login.png">
 </div>
 
+<br>
+<br>
+<br>
+
 <h2 align="center">Preview 2: Register</h2>
 <p>If a user does not have an account, they will click on register to enter the registration page. Entering a unique username, a password, and confirming the password will successfully register the user.</p>
 
