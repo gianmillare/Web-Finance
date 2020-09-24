@@ -10,4 +10,11 @@ Skills Used: API_Keys for data, Python + SQL for back end, and HTML + CSS + Java
 
 Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX -------> [Visit Repository](https://github.com/gianmillare/CS50-Introduction-to-Computer-Science)
 
-----------------------------------------------------------------------------------------------------------------
+<hr>
+
+<h2 align="center">Preview 1: Login</h2>
+<p>The greeting page of the application. Users will need to login to the website using an account. If an account for the user does not exist, they have the option to register a username and password.</p>
+
+<div align="center">
+<img src="images/login.png">
+</div>
