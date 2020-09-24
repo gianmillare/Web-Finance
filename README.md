@@ -77,3 +77,14 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 <div align="center">
 <img src="images/sell.png">
 </div>
+
+<br>
+<br>
+<br>
+
+<h2 align="center">Preview 7: History</h2>
+<p>A record of all transactions made by the user will be available in the "History" tab. The main function of this feature is to provide the user with data on past transactions, including date and time.</p>
+
+<div align="center">
+<img src="images/history.png">
+</div>
