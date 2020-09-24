@@ -88,3 +88,14 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 <div align="center">
 <img src="images/history.png">
 </div>
+
+<br>
+<br>
+<br>
+
+<h2 align="center">Preview 8: Add Cash</h2>
+<p>A personal touch. The amount of available cash can be adjusted by adding cash, thereby increasing the capabilities of the web application.</p>
+
+<div align="center">
+<img src="images/addcash.png">
+</div>
