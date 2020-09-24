@@ -99,3 +99,18 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 <div align="center">
 <img src="images/addcash.png">
 </div>
+
+<br>
+<br>
+<br>
+
+<h2 align="center">Preview 9: SQL</h2>
+<p>SQLite3 was used to perform the database-backend work. This SQL database is updated through all methods and actions performed in Finance Web Application.</p>
+
+<div align="center">
+<img src="images/sql1.png">
+</div>
+
+<div align="center">
+<img src="images/sql2.png">
+</div>
