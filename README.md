@@ -30,9 +30,28 @@ Gian Millare's Repository for CS50: Introduction to Computer Science by HarvardX
 <img src="images/register.png">
 </div>
 
+<br>
+<br>
+<br>
+
 <h2 align="center">Preview 3: Homepage</h2>
 <p>Once in the application, first-time users will be greeted with a starting $10,000.00 in there portfolio for available spending. Veteran users that have performed buying and selling will see a list of all stocks in their portfolio and each stock's current price.</p>
 
 <div align="center">
 <img src="images/index.png">
+</div>
+
+<br>
+<br>
+<br>
+
+<h2 align="center">Preview 4: Quote</h2>
+<p>To view the current price of a stock, users can use the "Quote" feature on the top left of the homepage. Users will perform purchases by clicking on the "Purchase" button after typing a valid stock symbol and selecting the amount of shares. The stock and the number of shares will be added to the portfolio.</p>
+
+<div align="center">
+<img src="images/quote1.png">
+</div>
+
+<div align="center">
+<img src="images/quote2.png">
 </div>
